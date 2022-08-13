@@ -2,18 +2,19 @@
 Script to Stage the files for the data source.
 """
 
-import os
-from datetime import datetime
 import logging
+import os
 import shutil
+from datetime import datetime
 
 logging.basicConfig(level=logging.INFO)
 
 ARCHIVE_DIRECTORY = 'food-data/archive/'
+DESTINATION_DIRECTORY = 'food-data/processed-datasets'
 SOURCE_FILE = 'food-data/merged-data/deduped-merged-data.csv'
-OUTPUT_FILE = 'food-data/processed-datasets/merged_datasets.csv'
+OUTPUT_FILE = os.path.join(DESTINATION_DIRECTORY, 'merged_datasets.csv')
 NDJSON_FILE = 'food-data/merged-data/deduped-merged-data.ndjson'
-NDJSON_OUTPUT_FILE = 'food-data/processed-datasets/merged_datasets.ndjson'
+NDJSON_OUTPUT_FILE = os.path.join(DESTINATION_DIRECTORY, 'merged_datasets.ndjson')
 
 
 def archive_file(path: str, archive_path: str) -> None:
@@ -40,6 +41,10 @@ def main():
     Main Scipt for moving the files.
     """
     logging.info('STAGING PROCESSED FILE...')
+    
+    if not os.path.exists(DESTINATION_DIRECTORY):
+        os.makedirs(DESTINATION_DIRECTORY)
+    
     if os.path.exists(SOURCE_FILE):
         archive_file(OUTPUT_FILE, ARCHIVE_DIRECTORY)
         logging.info(f"MOVING NEW DATASET FILES INTO PLACE..")
