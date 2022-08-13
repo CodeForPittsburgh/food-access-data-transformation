@@ -1,0 +1,16 @@
+name: DATA_PIPELINE_TESTS
+on: push
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: Setup Python
+        uses: actions/setup-python@v4
+        with:
+            python-version: '3.10'
+            cache: 'pip'
+      - run: pip install -r dev-requirements.txt
+      - run: pip install -r merge-requirements.txt
+      - run: pytest

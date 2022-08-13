@@ -1,0 +1,43 @@
+{
+    "type": "FeatureCollection",
+    "features": [
+        {
+            "type": "Feature",
+            "id": 22,
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -79.1447083721001,
+                    40.6327814588326
+                ]
+            },
+            "properties": {
+                "OBJECTID": 22,
+                "Site_ID_External": 142504,
+                "Site_ID_External_Source": 118595,
+                "Sponsor_Name": "Chevy Chase Community Center",
+                "Site_Name": "Chevy Chase Center",
+                "Site_Street": "640 North Fifth Avenue",
+                "Site_Street2": "",
+                "Site_City": "Indiana",
+                "Site_State": "PA",
+                "Site_County": "Indiana",
+                "Latitude": 40.63279048,
+                "Longitude": -79.14469557,
+                "Service_Type": "Grab and Go",
+                "Site_Hours": "Monday through Wednesday this site provides 1 breakfast and 1 lunch for every child from 11:45 AM to 12:30 PM. On Thursdays, this site provides 2 breakfasts and 2 lunches for every child from 11:45 AM to 12:30 PM.",
+                "Site_Closed_Checkbox": 0,
+                "General_Public_URL": "",
+                "Child_Nutrition_Sponsor_ID": "a481I000000ZDJ1",
+                "Child_Nutrition_Site_ID": "a491I000000VOvy",
+                "Site_ID_Long": "a491I000000VOvyQAG",
+                "Comments": "Please contact the site to confirm the information",
+                "Sponsor_Instructions": "",
+                "Site_Instructions": "",
+                "Site_Zip": "15701",
+                "Start_Date": 1623038400000,
+                "End_Date": 1630123200000
+            }
+        }
+    ]
+}

@@ -1,0 +1,225 @@
+{
+    "objectIdFieldName": "OBJECTID",
+    "uniqueIdField": {
+        "name": "OBJECTID",
+        "isSystemMaintained": true
+    },
+    "globalIdFieldName": "",
+    "geometryType": "esriGeometryPoint",
+    "spatialReference": {
+        "wkid": 102100,
+        "latestWkid": 3857
+    },
+    "fields": [
+        {
+            "name": "OBJECTID",
+            "type": "esriFieldTypeOID",
+            "alias": "OBJECTID",
+            "sqlType": "sqlTypeOther",
+            "domain": null,
+            "defaultValue": null
+        },
+        {
+            "name": "FarmMarketID",
+            "type": "esriFieldTypeSmallInteger",
+            "alias": "FarmMarketID",
+            "sqlType": "sqlTypeOther",
+            "domain": null,
+            "defaultValue": null
+        },
+        {
+            "name": "MarketType",
+            "type": "esriFieldTypeString",
+            "alias": "MarketType",
+            "sqlType": "sqlTypeOther",
+            "length": 12,
+            "domain": null,
+            "defaultValue": null
+        },
+        {
+            "name": "MarketName",
+            "type": "esriFieldTypeString",
+            "alias": "MarketName",
+            "sqlType": "sqlTypeOther",
+            "length": 50,
+            "domain": null,
+            "defaultValue": null
+        },
+        {
+            "name": "Address1",
+            "type": "esriFieldTypeString",
+            "alias": "Address1",
+            "sqlType": "sqlTypeOther",
+            "length": 100,
+            "domain": null,
+            "defaultValue": null
+        },
+        {
+            "name": "Address2",
+            "type": "esriFieldTypeString",
+            "alias": "Address2",
+            "sqlType": "sqlTypeOther",
+            "length": 100,
+            "domain": null,
+            "defaultValue": null
+        },
+        {
+            "name": "City",
+            "type": "esriFieldTypeString",
+            "alias": "City",
+            "sqlType": "sqlTypeOther",
+            "length": 50,
+            "domain": null,
+            "defaultValue": null
+        },
+        {
+            "name": "Zip",
+            "type": "esriFieldTypeString",
+            "alias": "Zip",
+            "sqlType": "sqlTypeOther",
+            "length": 5,
+            "domain": null,
+            "defaultValue": null
+        },
+        {
+            "name": "ZipPlus",
+            "type": "esriFieldTypeString",
+            "alias": "ZipPlus",
+            "sqlType": "sqlTypeOther",
+            "length": 4,
+            "domain": null,
+            "defaultValue": null
+        },
+        {
+            "name": "StateCode",
+            "type": "esriFieldTypeString",
+            "alias": "StateCode",
+            "sqlType": "sqlTypeOther",
+            "length": 2,
+            "domain": null,
+            "defaultValue": null
+        },
+        {
+            "name": "Latitude",
+            "type": "esriFieldTypeDouble",
+            "alias": "Latitude",
+            "sqlType": "sqlTypeOther",
+            "domain": null,
+            "defaultValue": null
+        },
+        {
+            "name": "Longitude",
+            "type": "esriFieldTypeDouble",
+            "alias": "Longitude",
+            "sqlType": "sqlTypeOther",
+            "domain": null,
+            "defaultValue": null
+        },
+        {
+            "name": "MarketPhone",
+            "type": "esriFieldTypeString",
+            "alias": "MarketPhone",
+            "sqlType": "sqlTypeOther",
+            "length": 50,
+            "domain": null,
+            "defaultValue": null
+        },
+        {
+            "name": "MarketPhoneExt",
+            "type": "esriFieldTypeString",
+            "alias": "MarketPhoneExt",
+            "sqlType": "sqlTypeOther",
+            "length": 10,
+            "domain": null,
+            "defaultValue": null
+        },
+        {
+            "name": "FarmMarketCountyKey",
+            "type": "esriFieldTypeSmallInteger",
+            "alias": "FarmMarketCountyKey",
+            "sqlType": "sqlTypeOther",
+            "domain": null,
+            "defaultValue": null
+        },
+        {
+            "name": "FarmMarketCountyCode",
+            "type": "esriFieldTypeSmallInteger",
+            "alias": "FarmMarketCountyCode",
+            "sqlType": "sqlTypeOther",
+            "domain": null,
+            "defaultValue": null
+        },
+        {
+            "name": "FarmMarketCounty",
+            "type": "esriFieldTypeString",
+            "alias": "FarmMarketCounty",
+            "sqlType": "sqlTypeOther",
+            "length": 15,
+            "domain": null,
+            "defaultValue": null
+        },
+        {
+            "name": "MarketSchedule",
+            "type": "esriFieldTypeString",
+            "alias": "MarketSchedule",
+            "sqlType": "sqlTypeOther",
+            "length": 350,
+            "domain": null,
+            "defaultValue": null
+        }
+    ],
+    "features": [
+        {
+            "attributes": {
+                "OBJECTID": 228314,
+                "FarmMarketID": 21,
+                "MarketType": "Farm Stand",
+                "MarketName": "Beccari's Farm Market",
+                "Address1": "5095 Thomas Run Road",
+                "Address2": "",
+                "City": "Oakdale",
+                "Zip": "15071",
+                "ZipPlus": "",
+                "StateCode": "PA",
+                "Latitude": 40.3753878,
+                "Longitude": -80.1353771,
+                "MarketPhone": "4122218768",
+                "MarketPhoneExt": "",
+                "FarmMarketCountyKey": 2414,
+                "FarmMarketCountyCode": 2,
+                "FarmMarketCounty": "Allegheny",
+                "MarketSchedule": ""
+            },
+            "geometry": {
+                "x": -8920629.3732989561,
+                "y": 4920643.5036063306
+            }
+        },
+        {
+            "attributes": {
+                "OBJECTID": 228315,
+                "FarmMarketID": 51,
+                "MarketType": "Farm Market",
+                "MarketName": "Carrick Citiparks Farmers Market",
+                "Address1": "1529 Brownsville Road",
+                "Address2": "",
+                "City": "Pittsburgh",
+                "Zip": "15210",
+                "ZipPlus": "",
+                "StateCode": "PA",
+                "Latitude": 40.3913414,
+                "Longitude": -79.986603,
+                "MarketPhone": "4124226547",
+                "MarketPhoneExt": "",
+                "FarmMarketCountyKey": 2414,
+                "FarmMarketCountyCode": 2,
+                "FarmMarketCounty": "Allegheny",
+                "MarketSchedule": ""
+            },
+            "geometry": {
+                "x": -8904067.9162437283,
+                "y": 4922974.9792131623
+            }
+        }
+    ]
+}

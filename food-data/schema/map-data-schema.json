@@ -1,0 +1,177 @@
+
+{
+    "$schema": "https://json-schema.org/draft/2020-12/schema",
+    "$id": "http://codeforpittsburgh.github.io/food-data-map-data",
+    "name": "food-map-data-schema",
+    "description": "Data Schema for records to be used in the Food Data Map.",
+    "type": "object",
+    "properties": {
+        "file_name": {
+            "desription": "Cleaned filename for data value",
+            "type": "string",
+            "minLength": 1
+
+        },
+        "id": {
+            "description": "Integer row number",
+            "type": "integer"
+        },
+        "source_org": {
+            "description": "Organization where the data originated from",
+            "type": "string",
+            "minLength": 1
+
+        },
+        "source_file": {
+            "description": "Original File for the data from the source organization",
+            "type": "string",
+            "minLength": 1
+        },
+        "original_id": {
+            "description": "Identifier from the original source file.",
+            "type": "string"
+        },
+        "type": {
+            "description": "Location type used for classification on the Map",
+            "type": "string",
+            "minLength": 1
+        },
+        "name": {
+            "description": "Name of the location for displaying on the map information",
+            "type": "string",
+            "minLength": 1
+
+        },
+        "address": {
+            "description": "Address line for the location.",
+            "type": ["string", "null"]
+        },
+        "city": {
+            "description": "City value for the location address.",
+            "type": ["string", "null"],
+            "minLength": 1
+        },
+        "state": {
+            "decription": "State value for the location address.",
+            "type": ["string", "null"]            
+        },
+        "zip_code": {
+            "description": "Zip Code value for the location address",
+            "type": "string",
+            "minLength": 1
+        },
+        "county": {
+            "description": "County value for the location address.",
+            "type": ["string", "null"]
+        },
+        "location_description": {
+            "description": "Short description of the location",
+            "type": ["string", "null"]
+        },
+        "phone": {
+            "description" : "Location phone number",
+            "type": ["string", "null"]
+        },
+        "url": {
+            "description": "Website address for the location",
+            "type": ["string", "null"]
+        },
+        "latitude": {
+            "description": "GIS Latitude value for mapping the location.",
+            "type": "number",
+            "minimum": -90,
+            "maximum": 90
+        },
+        "longitude": {
+            "description": "GIS Longitude value for mapping the location",
+            "type": "number",
+            "minimum": -180,
+            "maximum": 180
+        },
+        "latlng_source": {
+            "description": "Source for the coordinates provided in the Latitude and Longitude fields",
+            "type": "string",
+            "minLength": 1
+        },
+        "date_from": {
+            "description": "Date range when the location begins to provide the service.",
+            "type": ["string", "null"]
+        },
+        "date_to": {
+            "description": "Date range when the location stops providing the service.",
+            "type": ["string", "null"]
+        },
+        "open_to_spec_group": {
+            "description": "Defines any special groups that the location serves. This may include restrictions.",
+            "type": ["string", "null"]
+        },
+        "data_issues": {
+            "description": "List of data issues encountered when building the file separated by semi-colons",
+            "type": "string"
+        },
+        "food_bucks": {
+            "description": "Flag to denote Food Bucks are accepted at the location",
+            "type": "boolean"
+        },
+        "snap": {
+            "description": "Flag to denote that SNAP is accepted at the location",
+            "type": "boolean"
+        },
+        "wic": {
+            "description": "Flag to denote that WIC is accepted at the location",
+            "type": "boolean"
+        },
+        "fmnp": {
+            "description": "Flag to denote the location is part of the Farmer's Market Nutrition Program",
+            "type": "boolean"
+        },
+        "fresh_produce": {
+            "description": "Flag to denote the location provides fresh produce",
+            "type": "boolean"
+        },
+        "free_distribution": {
+            "description": "Flag to denote the location provides free food distributions",
+            "type": "boolean"
+        },
+        "group_id": {
+            "description": "location grouping value",
+            "type": "string"
+        },
+        "merged_record": {
+            "description": "Flag to denote the record was merged with another during data cleanup.",
+            "type": "boolean"
+        },
+        "timestamp": {
+            "description": "Denotes the last load time of the record from the source.",
+            "type": "string"
+        },
+        "in_error": {
+            "description": "Denotes the record is in error and may not be accurate.",
+            "type": "boolean"
+        }
+    },
+    "required": [
+        "file_name",
+        "id",
+        "source_org",
+        "source_file",
+        "type",
+        "name",
+        "city",
+        "state",
+        "latitude",
+        "longitude",
+        "latlng_source",
+        "open_to_spec_group",
+        "food_bucks",
+        "snap",
+        "wic",
+        "fmnp",
+        "fresh_produce",
+        "free_distribution",
+        "merged_record",
+        "timestamp",
+        "in_error"
+    ]
+
+}

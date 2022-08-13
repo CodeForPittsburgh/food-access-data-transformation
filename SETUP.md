@@ -1,6 +1,6 @@
-# Food Map Data Transformation Scripts
+# Environment Setup
 
-This repository contains the data transformation scripts used to create the backend data store for the Food Access Map. Below is information for configuring your environment to begin working with the project. Information for each script is found in the [Data Scripts ReadMe](./data_scripts/README.md)
+This document outlines the requirements to setup your environment to work with this project.
 
 ## Requirements
 

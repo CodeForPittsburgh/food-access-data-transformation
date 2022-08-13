@@ -1,0 +1,275 @@
+{
+    "type": "FeatureCollection",
+    "query": [
+        "106",
+        "27thave",
+        "altoona",
+        "pa",
+        "16601"
+    ],
+    "features": [
+        {
+            "id": "address.00166013611122",
+            "type": "Feature",
+            "place_type": [
+                "address"
+            ],
+            "relevance": 1,
+            "address": "106",
+            "text": "27th Ave",
+            "place_name": "106 27th Ave, Altoona, Pennsylvania 16601, United States",
+            "center": [
+                -78.41051,
+                40.52806
+            ],
+            "properties": {
+                "accuracy": "approximate"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -78.41051,
+                    40.52806
+                ]
+            },
+            "context": [
+                {
+                    "id": "neighborhood.4979362753679130",
+                    "text": "Beverly Hills"
+                },
+                {
+                    "id": "postcode.10950742160234300",
+                    "text": "16601"
+                },
+                {
+                    "id": "place.3521492742643970",
+                    "wikidata": "Q444210",
+                    "text": "Altoona"
+                },
+                {
+                    "id": "district.3690481064961320",
+                    "wikidata": "Q494152",
+                    "text": "Blair County"
+                },
+                {
+                    "id": "region.13761801799111630",
+                    "short_code": "US-PA",
+                    "wikidata": "Q1400",
+                    "text": "Pennsylvania"
+                },
+                {
+                    "id": "country.14135384517372290",
+                    "wikidata": "Q30",
+                    "short_code": "us",
+                    "text": "United States"
+                }
+            ]
+        },
+        {
+            "id": "postcode.10950742160234300",
+            "type": "Feature",
+            "place_type": [
+                "postcode"
+            ],
+            "relevance": 0.683333,
+            "properties": {},
+            "text": "16601",
+            "place_name": "Altoona, Pennsylvania 16601, United States",
+            "bbox": [
+                -78.500755998,
+                40.451851505,
+                -78.234458273,
+                40.647756987
+            ],
+            "center": [
+                -78.394736,
+                40.518681
+            ],
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -78.394736,
+                    40.518681
+                ]
+            },
+            "context": [
+                {
+                    "id": "place.3521492742643970",
+                    "wikidata": "Q444210",
+                    "text": "Altoona"
+                },
+                {
+                    "id": "district.3690481064961320",
+                    "wikidata": "Q494152",
+                    "text": "Blair County"
+                },
+                {
+                    "id": "region.13761801799111630",
+                    "short_code": "US-PA",
+                    "wikidata": "Q1400",
+                    "text": "Pennsylvania"
+                },
+                {
+                    "id": "country.14135384517372290",
+                    "wikidata": "Q30",
+                    "short_code": "us",
+                    "text": "United States"
+                }
+            ]
+        },
+        {
+            "id": "place.3521492742643970",
+            "type": "Feature",
+            "place_type": [
+                "place"
+            ],
+            "relevance": 0.548148,
+            "properties": {
+                "wikidata": "Q444210"
+            },
+            "text": "Altoona",
+            "place_name": "Altoona, Pennsylvania, United States",
+            "bbox": [
+                -78.500755,
+                40.44986,
+                -78.234459,
+                40.647756
+            ],
+            "center": [
+                -78.394736,
+                40.518681
+            ],
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -78.394736,
+                    40.518681
+                ]
+            },
+            "context": [
+                {
+                    "id": "district.3690481064961320",
+                    "wikidata": "Q494152",
+                    "text": "Blair County"
+                },
+                {
+                    "id": "region.13761801799111630",
+                    "short_code": "US-PA",
+                    "wikidata": "Q1400",
+                    "text": "Pennsylvania"
+                },
+                {
+                    "id": "country.14135384517372290",
+                    "wikidata": "Q30",
+                    "short_code": "us",
+                    "text": "United States"
+                }
+            ]
+        },
+        {
+            "id": "address.4367966319942192",
+            "type": "Feature",
+            "place_type": [
+                "address"
+            ],
+            "relevance": 0.493333,
+            "properties": {
+                "accuracy": "street"
+            },
+            "text": "Altoona Avenue",
+            "place_name": "Altoona Avenue, Enola, Pennsylvania 17025, United States",
+            "center": [
+                -76.933125,
+                40.29188
+            ],
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -76.933125,
+                    40.29188
+                ]
+            },
+            "context": [
+                {
+                    "id": "postcode.11064453539252940",
+                    "text": "17025"
+                },
+                {
+                    "id": "place.8959253645345450",
+                    "wikidata": "Q1132153",
+                    "text": "Enola"
+                },
+                {
+                    "id": "district.8618572561940190",
+                    "wikidata": "Q494134",
+                    "text": "Cumberland County"
+                },
+                {
+                    "id": "region.13761801799111630",
+                    "short_code": "US-PA",
+                    "wikidata": "Q1400",
+                    "text": "Pennsylvania"
+                },
+                {
+                    "id": "country.14135384517372290",
+                    "wikidata": "Q30",
+                    "short_code": "us",
+                    "text": "United States"
+                }
+            ]
+        },
+        {
+            "id": "address.8829154600484082",
+            "type": "Feature",
+            "place_type": [
+                "address"
+            ],
+            "relevance": 0.455556,
+            "properties": {
+                "accuracy": "rooftop"
+            },
+            "text": "Pa",
+            "place_name": "Pa 16, 26-803 Kolonia Promna, Masovian Voivodeship, Poland",
+            "center": [
+                20.951852,
+                51.674948
+            ],
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    20.951852,
+                    51.674948
+                ]
+            },
+            "address": "16",
+            "context": [
+                {
+                    "id": "postcode.11346882775427720",
+                    "text": "26-803"
+                },
+                {
+                    "id": "place.16282372748390390",
+                    "text": "Kolonia Promna"
+                },
+                {
+                    "id": "district.8651741954333330",
+                    "wikidata": "Q727262",
+                    "text": "Powiat Białobrzeski"
+                },
+                {
+                    "id": "region.9375820343691660",
+                    "short_code": "PL-MZ",
+                    "wikidata": "Q54169",
+                    "text": "Masovian Voivodeship"
+                },
+                {
+                    "id": "country.6866831442766020",
+                    "wikidata": "Q36",
+                    "short_code": "pl",
+                    "text": "Poland"
+                }
+            ]
+        }
+    ],
+    "attribution": "NOTICE: © 2022 Mapbox and its suppliers. All rights reserved. Use of this data is subject to the Mapbox Terms of Service (https://www.mapbox.com/about/maps/). This response and the information it contains may not be retained. POI(s) provided by Foursquare."
+}

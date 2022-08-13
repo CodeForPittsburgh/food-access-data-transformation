@@ -1,0 +1,132 @@
+{
+    "objectIdFieldName": "ObjectId",
+    "uniqueIdField": {
+        "name": "ObjectId",
+        "isSystemMaintained": true
+    },
+    "globalIdFieldName": "",
+    "geometryType": "esriGeometryPoint",
+    "spatialReference": {
+        "wkid": 4326,
+        "latestWkid": 4326
+    },
+    "fields": [
+        {
+            "name": "Store_Name",
+            "type": "esriFieldTypeString",
+            "alias": "Store_Name",
+            "sqlType": "sqlTypeNVarchar",
+            "length": 2147483647,
+            "domain": null,
+            "defaultValue": null
+        },
+        {
+            "name": "Address",
+            "type": "esriFieldTypeString",
+            "alias": "Address",
+            "sqlType": "sqlTypeNVarchar",
+            "length": 2147483647,
+            "domain": null,
+            "defaultValue": null
+        },
+        {
+            "name": "Address_Line__2",
+            "type": "esriFieldTypeString",
+            "alias": "Address Line #2",
+            "sqlType": "sqlTypeNVarchar",
+            "length": 2147483647,
+            "domain": null,
+            "defaultValue": null
+        },
+        {
+            "name": "City",
+            "type": "esriFieldTypeString",
+            "alias": "City",
+            "sqlType": "sqlTypeNVarchar",
+            "length": 2147483647,
+            "domain": null,
+            "defaultValue": null
+        },
+        {
+            "name": "State",
+            "type": "esriFieldTypeString",
+            "alias": "State",
+            "sqlType": "sqlTypeNVarchar",
+            "length": 2147483647,
+            "domain": null,
+            "defaultValue": null
+        },
+        {
+            "name": "Zip5",
+            "type": "esriFieldTypeString",
+            "alias": "Zip5",
+            "sqlType": "sqlTypeNVarchar",
+            "length": 2147483647,
+            "domain": null,
+            "defaultValue": null
+        },
+        {
+            "name": "Zip4",
+            "type": "esriFieldTypeString",
+            "alias": "Zip4",
+            "sqlType": "sqlTypeNVarchar",
+            "length": 2147483647,
+            "domain": null,
+            "defaultValue": null
+        },
+        {
+            "name": "County",
+            "type": "esriFieldTypeString",
+            "alias": "County",
+            "sqlType": "sqlTypeNVarchar",
+            "length": 2147483647,
+            "domain": null,
+            "defaultValue": null
+        },
+        {
+            "name": "Longitude",
+            "type": "esriFieldTypeDouble",
+            "alias": "Longitude",
+            "sqlType": "sqlTypeFloat",
+            "domain": null,
+            "defaultValue": null
+        },
+        {
+            "name": "Latitude",
+            "type": "esriFieldTypeDouble",
+            "alias": "Latitude",
+            "sqlType": "sqlTypeFloat",
+            "domain": null,
+            "defaultValue": null
+        },
+        {
+            "name": "ObjectId",
+            "type": "esriFieldTypeOID",
+            "alias": "ObjectId",
+            "sqlType": "sqlTypeInteger",
+            "domain": null,
+            "defaultValue": null
+        }
+    ],
+    "features": [
+        {
+            "attributes": {
+                "Store_Name": "Bloomfield Groceria",
+                "Address": "237 Cedarville St",
+                "Address_Line__2": null,
+                "City": "Pittsburgh",
+                "State": "PA",
+                "Zip5": "15224",
+                "Zip4": "1945",
+                "County": "ALLEGHENY",
+                "Longitude": -79.948547,
+                "Latitude": 40.461876,
+                "ObjectId": 105
+            },
+            "geometry": {
+                "x": -79.948546999999991,
+                "y": 40.461876000000004
+            }
+        }
+    ]
+}

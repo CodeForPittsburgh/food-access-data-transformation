@@ -1,0 +1,74 @@
+{
+    "objectIdFieldName": "OBJECTID",
+    "uniqueIdField": {
+        "name": "OBJECTID",
+        "isSystemMaintained": true
+    },
+    "globalIdFieldName": "",
+    "fields": [
+        {
+            "name": "OBJECTID",
+            "type": "esriFieldTypeOID",
+            "alias": "OBJECTID",
+            "sqlType": "sqlTypeOther",
+            "domain": null,
+            "defaultValue": null
+        },
+        {
+            "name": "FarmMarketID",
+            "type": "esriFieldTypeSmallInteger",
+            "alias": "FarmMarketID",
+            "sqlType": "sqlTypeOther",
+            "domain": null,
+            "defaultValue": null
+        },
+        {
+            "name": "vendorID",
+            "type": "esriFieldTypeString",
+            "alias": "vendorID",
+            "sqlType": "sqlTypeOther",
+            "length": 8,
+            "domain": null,
+            "defaultValue": null
+        },
+        {
+            "name": "VendorName",
+            "type": "esriFieldTypeString",
+            "alias": "VendorName",
+            "sqlType": "sqlTypeOther",
+            "length": 50,
+            "domain": null,
+            "defaultValue": null
+        },
+        {
+            "name": "VendorPhone",
+            "type": "esriFieldTypeString",
+            "alias": "VendorPhone",
+            "sqlType": "sqlTypeOther",
+            "length": 50,
+            "domain": null,
+            "defaultValue": null
+        },
+        {
+            "name": "VendorSchedule",
+            "type": "esriFieldTypeString",
+            "alias": "VendorSchedule",
+            "sqlType": "sqlTypeOther",
+            "length": 350,
+            "domain": null,
+            "defaultValue": null
+        }
+    ],
+    "features": [
+        {
+            "attributes": {
+                "OBJECTID": 293779,
+                "FarmMarketID": 21,
+                "vendorID": "72",
+                "VendorName": "BECCARIS FARM MARKET",
+                "VendorPhone": "4122218768",
+                "VendorSchedule": "July - October Tuesday - Sunday 12:00 PM - 5:30 PM "
+            }
+        }
+    ]
+}

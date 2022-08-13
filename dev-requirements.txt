@@ -1,0 +1,4 @@
+pytest
+assertpy
+autopep8
+responses

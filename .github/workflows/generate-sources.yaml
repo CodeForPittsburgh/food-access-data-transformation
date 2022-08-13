@@ -1,0 +1,46 @@
+name: DATA_PIPELINE_EXECUTION
+on: workflow_dispatch
+
+env:
+  MAPBOX_KEY: ${{ secrets.MAPBOX_KEY }}
+
+jobs:
+  data_gen:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: Setup Python
+        uses: actions/setup-python@v4
+        with:
+            python-version: '3.10'
+            cache: 'pip'
+      - name: Install Dependencies
+        run: pip install -r merge-requirements.txt
+      - name: Farmer's Market Sources
+        run: python data_scripts/fmnp_source.py
+      - name: Food Bank Source
+        run: python data_scripts/gpcfb_source.py
+      - name: Grow PGH Source
+        run: python data_scripts/grow_pgh_source.py
+      - name: Fresh Access Source
+        run: python data_scripts/jh_fresh_access_source.py
+      - name: Fresh Corners Source
+        run: python data_scripts/jh_fresh_corners_source.py
+      - name: Bridgeway Capital Source
+        run: python data_scripts/jh_bridgeway_capital_source.py
+      - name: SNAP Source
+        run: python data_scripts/snap_source.py
+      - name: Summer Meal Sites
+        run: python data_scripts/summer_meal_source.py
+      - name: WIC Source
+        run: python data_scripts/wic_source.py
+      - name: Merge Data
+        run: python data_scripts/merge_data.py
+      - name: De-Duplicate Data
+        run: python data_scripts/de_duplication.py
+      - name: Stage Data Files for Use
+        run: python data_scripts/stage_files.py
+      - name: Commit Data Files
+        uses: stefanzweifel/git-auto-commit-action@v4
+        with:
+            commit_message: Generated new Data Files

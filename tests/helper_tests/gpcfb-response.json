@@ -1,0 +1,280 @@
+{
+    "objectIdFieldName": "objectid",
+    "uniqueIdField": {
+        "name": "objectid",
+        "isSystemMaintained": true
+    },
+    "globalIdFieldName": "globalid",
+    "geometryType": "esriGeometryPoint",
+    "spatialReference": {
+        "wkid": 4326,
+        "latestWkid": 4326
+    },
+    "fields": [
+        {
+            "name": "objectid",
+            "type": "esriFieldTypeOID",
+            "alias": "ObjectID",
+            "sqlType": "sqlTypeOther",
+            "domain": null,
+            "defaultValue": null
+        },
+        {
+            "name": "globalid",
+            "type": "esriFieldTypeGlobalID",
+            "alias": "GlobalID",
+            "sqlType": "sqlTypeOther",
+            "length": 38,
+            "domain": null,
+            "defaultValue": null
+        },
+        {
+            "name": "EditDate",
+            "type": "esriFieldTypeDate",
+            "alias": "Last Updated",
+            "sqlType": "sqlTypeOther",
+            "length": 8,
+            "domain": null,
+            "defaultValue": null
+        },
+        {
+            "name": "POC_name",
+            "type": "esriFieldTypeString",
+            "alias": "POC name",
+            "sqlType": "sqlTypeOther",
+            "length": 255,
+            "domain": null,
+            "defaultValue": null
+        },
+        {
+            "name": "POC_phone",
+            "type": "esriFieldTypeString",
+            "alias": "POC phone number",
+            "sqlType": "sqlTypeOther",
+            "length": 255,
+            "domain": null,
+            "defaultValue": null
+        },
+        {
+            "name": "POC_email",
+            "type": "esriFieldTypeString",
+            "alias": "POC email",
+            "sqlType": "sqlTypeOther",
+            "length": 255,
+            "domain": null,
+            "defaultValue": null
+        },
+        {
+            "name": "SITE_name",
+            "type": "esriFieldTypeString",
+            "alias": "Site's Name",
+            "sqlType": "sqlTypeOther",
+            "length": 255,
+            "domain": null,
+            "defaultValue": null
+        },
+        {
+            "name": "SITE_website",
+            "type": "esriFieldTypeString",
+            "alias": "Website",
+            "sqlType": "sqlTypeOther",
+            "length": 255,
+            "domain": null,
+            "defaultValue": null
+        },
+        {
+            "name": "SITE_specific_location",
+            "type": "esriFieldTypeString",
+            "alias": "Specific Location Instructions",
+            "sqlType": "sqlTypeOther",
+            "length": 1000,
+            "domain": null,
+            "defaultValue": null
+        },
+        {
+            "name": "Time",
+            "type": "esriFieldTypeString",
+            "alias": "Days and Hours Available for Pick-up",
+            "sqlType": "sqlTypeOther",
+            "length": 1000,
+            "domain": null,
+            "defaultValue": null
+        },
+        {
+            "name": "PublicNotes",
+            "type": "esriFieldTypeString",
+            "alias": "Other Information",
+            "sqlType": "sqlTypeOther",
+            "length": 1000,
+            "domain": null,
+            "defaultValue": null
+        },
+        {
+            "name": "SITE_address1",
+            "type": "esriFieldTypeString",
+            "alias": "Address Line 1",
+            "sqlType": "sqlTypeOther",
+            "length": 255,
+            "domain": null,
+            "defaultValue": null
+        },
+        {
+            "name": "SITE_address2",
+            "type": "esriFieldTypeString",
+            "alias": "Address Line 2",
+            "sqlType": "sqlTypeOther",
+            "length": 255,
+            "domain": null,
+            "defaultValue": null
+        },
+        {
+            "name": "SITE_city",
+            "type": "esriFieldTypeString",
+            "alias": "City",
+            "sqlType": "sqlTypeOther",
+            "length": 255,
+            "domain": null,
+            "defaultValue": null
+        },
+        {
+            "name": "SITE_state",
+            "type": "esriFieldTypeString",
+            "alias": "State",
+            "sqlType": "sqlTypeOther",
+            "length": 255,
+            "domain": null,
+            "defaultValue": null
+        },
+        {
+            "name": "SITE_zip",
+            "type": "esriFieldTypeString",
+            "alias": "Zip Code",
+            "sqlType": "sqlTypeOther",
+            "length": 255,
+            "domain": null,
+            "defaultValue": null
+        },
+        {
+            "name": "STATUS",
+            "type": "esriFieldTypeString",
+            "alias": "Status",
+            "sqlType": "sqlTypeOther",
+            "length": 1000,
+            "domain": null,
+            "defaultValue": null
+        },
+        {
+            "name": "Population_Served",
+            "type": "esriFieldTypeString",
+            "alias": "Populations Served",
+            "sqlType": "sqlTypeOther",
+            "length": 1000,
+            "domain": null,
+            "defaultValue": null
+        },
+        {
+            "name": "Population_Served_filter",
+            "type": "esriFieldTypeString",
+            "alias": "Population Filters",
+            "sqlType": "sqlTypeOther",
+            "length": 1000,
+            "domain": null,
+            "defaultValue": null
+        },
+        {
+            "name": "Volunteer",
+            "type": "esriFieldTypeString",
+            "alias": "Volunteers?",
+            "sqlType": "sqlTypeOther",
+            "length": 255,
+            "domain": {
+                "type": "codedValue",
+                "name": "cvd_Volunteer",
+                "codedValues": [
+                    {
+                        "name": "Yes, volunteers are needed.",
+                        "code": "Yes"
+                    },
+                    {
+                        "name": "No, volunteers are not needed right now.",
+                        "code": "No"
+                    }
+                ]
+            },
+            "defaultValue": null
+        },
+        {
+            "name": "Volunteer_Info",
+            "type": "esriFieldTypeString",
+            "alias": "Volunteer Information",
+            "sqlType": "sqlTypeOther",
+            "length": 1000,
+            "domain": null,
+            "defaultValue": null
+        },
+        {
+            "name": "Limited",
+            "type": "esriFieldTypeString",
+            "alias": "Is this a one-day only or limited time event?",
+            "sqlType": "sqlTypeOther",
+            "length": 255,
+            "domain": {
+                "type": "codedValue",
+                "name": "cvd_Limited",
+                "codedValues": [
+                    {
+                        "name": "Yes",
+                        "code": "yes"
+                    },
+                    {
+                        "name": "No",
+                        "code": "no"
+                    }
+                ]
+            },
+            "defaultValue": null
+        },
+        {
+            "name": "CATEGORY",
+            "type": "esriFieldTypeString",
+            "alias": "CATEGORY",
+            "sqlType": "sqlTypeOther",
+            "length": 256,
+            "domain": null,
+            "defaultValue": null
+        }
+    ],
+    "features": [
+        {
+            "attributes": {
+                "objectid": 139,
+                "globalid": "88663be3-de50-4f31-93ed-4f6abe1323f0",
+                "EditDate": 1621434181549,
+                "POC_name": null,
+                "POC_phone": null,
+                "POC_email": null,
+                "SITE_name": "Northview Heights",
+                "SITE_website": "https://pittsburghpa.gov/citiparks/after-school-feeding-program",
+                "SITE_specific_location": "(none)",
+                "Time": "Mondays, Wednesdays and Fridays from 11:00 am to 1:00 pm",
+                "PublicNotes": "Grab and Go meal and snack distribution for children.",
+                "SITE_address1": "441 Mt. Pleasant Road",
+                "SITE_address2": null,
+                "SITE_city": "Pittsburgh",
+                "SITE_state": "PA",
+                "SITE_zip": "15214",
+                "STATUS": "active",
+                "Population_Served": "Available for children up to 18 years old and those with intellectual disabilities up to 21 years old.",
+                "Population_Served_filter": "students",
+                "Volunteer": "Yes",
+                "Volunteer_Info": null,
+                "Limited": "no",
+                "CATEGORY": ""
+            },
+            "geometry": {
+                "x": -80.0007569578037,
+                "y": 40.478952041312951
+            }
+        }
+    ]
+}
