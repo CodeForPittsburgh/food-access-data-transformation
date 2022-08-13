@@ -211,7 +211,7 @@ The Just Harvest Fresh Access Source Script maps the values present in the Fresh
 
 The __snap_source__ script is used to query the ARC GIS web services to retrieve the items that support the SNAP program. The results of this search contain a mix of different types of locations. The script leverages the __classification__ module to determine the type based on the name.
 
-## SNAP Arc GIS Query Mapping
+### SNAP Arc GIS Query Mapping
 
 The following mapping are used for the SNAP Source:
 
@@ -318,3 +318,15 @@ The __merge_data__ script is used to combine all of the Raw files into a single 
 
 * All entries must have valid GeoCode Coordinates
 * Any entries with invalid GeoCode Coordinates are output to the __invalid-raw-sources.csv__ file.
+
+## De-Duplication Script
+
+The __de_deuplication__ script is run to process the raw merged data and remove and detected duplicate rows using the __merge__ module. The script outputs the following files:
+
+* deduped-merged-data.csv - Pipe Delimited File
+* deduped-merged-data.ndjson - Data from the Pipe Delimited File in an NDJSON format.
+* duplicate-merged-data.csv - Contains the duplicate rows removed from the file.
+
+## Stage Files Script
+
+The __stage_files__, script will archive the previous version of the generated CSV and place the current de-duplicated CSV and NDJSON in it's place. These are then available for the Food Access Map.

@@ -41,7 +41,7 @@ chmod +x ./venv/bin/activate
 
 ```bash
 # Install Dependencies
-pip install -r merge-requirements.txt
+pip install -r requirements.txt
 pip install -r dev-requirements.txt
 ```
 
