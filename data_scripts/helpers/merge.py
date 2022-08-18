@@ -11,34 +11,34 @@ logging.basicConfig(level=logging.INFO)
 
 SOURCE_HIERARCHY = {
     'GP_garden_directory_listing-20210322.csv': {
-        'coordinates': 2,
+        'coordinates': 1,
         'fresh_produce': 2
     },
     'ARC_GIS_SNAP_QUERY': {
-        'coordinates': 1,
+        'coordinates': 2,
         'snap': 1,
         'fresh_produce': 3
     },
     'WIC_WS_QUERY': {
-        'coordinates': 2,
+        'coordinates': 1,
         'wic': 1
     },
     'ARC_GIS_SUMMER_MEAL_QUERY': {
-        'coordinates': 1,
+        'coordinates': 2,
         'free_distribution': 1
     },
     'ARC_GIS_FMNP_QUERY': {
-        'coordinates': 1,
+        'coordinates': 2,
         'wic': 2,
         'fmnp': 1,
         'fresh_produce': 1
     },
     'ARC_GIS_GPCFB_QUERY': {
-        'coordinates': 1,
+        'coordinates': 2,
         'free_distribution': 1
     },
     'Just Harvest Google Sheets': {
-        'coordinates': 2,
+        'coordinates': 1,
         'snap': 2,
         'food_bucks': 1,
         'free_distribution': 1,
@@ -65,9 +65,11 @@ def deduplicate(records: list, schema: dict) -> dict:
 
     for record in records:
         maputil.apply_schema_to_record(record, schema)
-        if record['address'] not in address_map:
-            address_map[str(record['address'])] = []
-        address_map[record['address']].append(record)
+        address_value = str(record['address']).lower().replace(',','').replace('.', '')
+        
+        if address_value not in address_map:
+            address_map[address_value] = []
+        address_map[address_value].append(record)
 
     for address in address_map.keys():
         address_set = address_map[address]
