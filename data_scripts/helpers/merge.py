@@ -164,7 +164,7 @@ def merge_records(source: dict, target: dict, schema: dict) -> dict:
     record['id'] = 0
 
     validation_result = validation.validate(schema, record)
-    if validation_result['valid'] is True:
+    if validation_result['valid']:
         record['in_error'] = False
         return RulesEngine(record).apply_global_rules().commit()
     else:

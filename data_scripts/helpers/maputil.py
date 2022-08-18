@@ -228,7 +228,7 @@ def convert_value(value:any, type:str) -> str | float | bool | int:
         case 'number':
             return float(value)
         case 'boolean':
-            return bool(value)
+            return str(value).lower() in ('true', '1', 'yes')
         case 'integer':
             return int(value)
     return value

@@ -48,8 +48,8 @@ def main():
     if os.path.exists(SOURCE_FILE):
         archive_file(OUTPUT_FILE, ARCHIVE_DIRECTORY)
         logging.info(f"MOVING NEW DATASET FILES INTO PLACE..")
-        shutil.move(SOURCE_FILE, OUTPUT_FILE)
-        shutil.move(NDJSON_FILE, NDJSON_OUTPUT_FILE)
+        shutil.copy(SOURCE_FILE, OUTPUT_FILE)
+        shutil.copy(NDJSON_FILE, NDJSON_OUTPUT_FILE)
         
     else:
         logging.error(f"NEW DATASET FILE DOES NOT EXIST: {SOURCE_FILE}")

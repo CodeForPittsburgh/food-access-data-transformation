@@ -325,12 +325,17 @@ def test_apply_schema_to_record():
         "description:": "Denotes the record is active",
         "type": "boolean"
     }
+    schema['properties']['in_error'] = {
+        "description": "Denotes the recvord is in error",
+        "type": "boolean"
+    }
     
     record = {
         'id': '1234',
         'name': 'My Name',
         'type': 'goofy',
-        'is_active': 'True'
+        'is_active': 'False',
+        'in_error': 'True'
         
     }
     
@@ -339,7 +344,8 @@ def test_apply_schema_to_record():
     assert_that(record['id']).is_type_of(float).is_equal_to(1234)
     assert_that(record['name']).is_type_of(str).is_equal_to('My Name')
     assert_that(record['type']).is_type_of(str).is_equal_to('goofy')
-    assert_that(record['is_active']).is_type_of(bool).is_true()
+    assert_that(record['is_active']).is_type_of(bool).is_false()
+    assert_that(record['in_error']).is_type_of(bool).is_true()
     
     
     

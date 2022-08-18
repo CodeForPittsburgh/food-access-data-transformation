@@ -88,6 +88,7 @@ def main():
     invalid_records = []
     for file in files:
         path = os.path.join(INPUT_DIRECTORY, file)
+        logging.info(f"MERGING FILE {file}")
         with open(path, 'r', encoding='utf-8') as input_file:
             reader = csv.DictReader(input_file, dialect='input')
             for record in reader:
