@@ -1,14 +1,22 @@
+# Unit Tests
 
+This section of the repository contains the unit tests for the scripts and modules being used in the data transformation. The unit tests leverage the following base modules.
 
-# Selenium
+* [PyTest](https://docs.pytest.org/en/7.1.x/)
+* [AssertPy](https://assertpy.github.io/docs.html)
 
-[Selenium IDE](https://www.selenium.dev/selenium-ide/) is an application used for automating web browser testing. The Food Access Map uses it to test web browser functionality and make sure that everything is functioning as intended. 
+PyTest provides the framework for test execution while AssertPy provides a fluent interface for performing common assertions within the tests.
 
-To get started using Selenium: 
+## Adding Tests
 
-1. Add the Selenium extension to your browser (either Chrome or Firefox). 
-2. Click the extension button on your web browser to open the application.
-3. From the application screen, click "Open an existing project"
-4. Navigate to your local copy of the Github repository, and open "Food Access Map.side", currently located in the "tests" directory. 
+These tests were constructed with a Test Driven Development (TDD) mindset. Additional tests can be added to each of the existing Testing Modules or additional modules can be added. All Unit Test files should follow the existing naming convention: `<module_name>_test.py`.
 
-From here, you can select between tests and run them by typing either "Ctrl + Shift + R" to run all tests, or "Ctrl + R" to run the current test.
+## Executing Tests
+
+Tests can be executed simply by invoking pytest at the command line:
+
+```bash
+pytest
+```
+
+This will execute the PyTest module and execute all of the tests located in the __tests__ directory.

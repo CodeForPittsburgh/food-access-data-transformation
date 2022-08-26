@@ -63,3 +63,9 @@ All Unit Tests can be run from the command line at the root folder with the foll
 ```bash
 pytest
 ```
+
+## Adding New Sources
+
+New sources are always welcome to be added to this dataset. Each source is currently processed through a source specific script located in the __data_scripts__ directory. Additional data sources should follow this same methodology of creating a source specific script. Additional information on adding new sources as well as common analysis practices can be found in the [Add Sources](./data_scripts/Adding_Sources.md) document.
+
+
