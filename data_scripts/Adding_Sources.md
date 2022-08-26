@@ -110,3 +110,7 @@ To process any new sources, you will need to add the execution of your new scrip
 ```
 
 Once your script is added to the Actions, it will be executed with all of the other sources and merged into the final dataset.
+
+## Documentation
+
+Before you finish with your new source script, be sure to add a section to the existing [ReadMe](./README.md) file. This should contain a table your mappings and the rules for establishing the various flags for each record.
