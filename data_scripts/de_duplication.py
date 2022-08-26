@@ -51,8 +51,7 @@ def load_file(path: str) -> list:
     csv.register_dialect('input', delimiter='|')
     with open(path, 'r', encoding='utf-8') as input_file:
         reader = csv.DictReader(input_file, dialect='input')
-        for record in reader:
-            records.append(record)
+        records = list(reader)
     return records
 
 
