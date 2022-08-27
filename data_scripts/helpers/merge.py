@@ -127,6 +127,27 @@ def process_duplicates(addresses: list, schema: dict) -> dict:
         'duplicates': dupes
     }
 
+def get_skip_fields(schema:dict) -> list:
+    """
+    Retrieves the default skip fields for merge checking.
+    These should be the Number, integer and Boolean fields
+
+    Args:
+        schema (dict): Record schema
+
+    Returns:
+        list: List of field names
+    """
+    
+    fields = set()
+    properties = schema.get('properties', [])
+    for property in properties.keys():
+        attributes = properties.get(property, {})
+        prop_type = attributes.get('type')
+        if 'boolean' in prop_type or 'integer' in prop_type or 'number' in prop_type:
+            fields.add(property)
+    return list(fields)
+    
 
 def merge_records(source: dict, target: dict, schema: dict) -> dict:
     """
@@ -141,8 +162,7 @@ def merge_records(source: dict, target: dict, schema: dict) -> dict:
     Returns:
         dict: Result with the Record and the Duplicate
     """
-    skip_fields = ['wic', 'fmnp', 'food_bucks', 'snap',
-                   'longitude', 'latitude', 'fresh_produce', 'free_distribution', 'id', 'in_error']
+    skip_fields = get_skip_fields(schema)
 
     record = maputil.new_record(schema)
     for key in source.keys():
