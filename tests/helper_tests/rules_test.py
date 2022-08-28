@@ -12,6 +12,7 @@ import json
 
 
 FARMER_MARKET = "farmer's market"
+JUST_HARVEST_SOURCE = 'Just Harvest'
 
 def load_schema() -> dict:
     """
@@ -256,7 +257,8 @@ def test_apply_fresh_access_rules():
 
     record = get_record()
     record['name'] = 'Cool Market'
-    record['type'] = 'fresh access'
+    record['type'] = 'supermarket'
+    record['source_org'] = JUST_HARVEST_SOURCE
     
     result = RulesEngine(record).apply_fresh_access_rules().commit()
     
@@ -277,6 +279,7 @@ def test_apply_fresh_access_rules_skip():
     record['name'] = 'Cool Market'
     record['type'] = 'supermarket'
     record['free_distribution'] = True
+    record['source_org'] = 'ARC_GIS'
     
     result = RulesEngine(record).apply_fresh_access_rules().commit()
     

@@ -9,7 +9,7 @@ import logging
 import os
 
 
-from helpers import gis, maputil, validation, mapbox
+from helpers import gis, maputil, validation, mapbox, classification
 from helpers.rules import RulesEngine
 
 RAW_OUTPUT_FOLDER = 'food-data/raw-sources'
@@ -88,7 +88,7 @@ def map_record(record: dict, schema: dict) -> dict:
     mapped_record['state'] = record.get('state', '')
     mapped_record['zip_code'] = record.get('zip_code', '')
     mapped_record['county'] = 'Allegheny'
-    mapped_record['type'] = 'fresh access'
+    mapped_record['type'] = classification.find_type(record.get('Market'))
     mapped_record['location_description'] = f"{record.get('Season', '')}<br/>{record.get('Date/Time', '')}"
     mapped_record['source_org'] = 'Just Harvest'
     mapped_record['source_file'] = SOURCE
@@ -112,7 +112,11 @@ def map_record(record: dict, schema: dict) -> dict:
         mapped_record['longitude'] = coordinates.get('longitude', 0)
         mapped_record['latitude'] = coordinates.get('latitude', 0)
 
-    return RulesEngine(mapped_record).apply_global_rules().apply_fresh_access_rules().commit()
+    return RulesEngine(mapped_record)\
+        .apply_global_rules()\
+        .apply_fresh_access_rules()\
+        .apply_farmer_market_rules()\
+        .commit()
 
 
 def main():

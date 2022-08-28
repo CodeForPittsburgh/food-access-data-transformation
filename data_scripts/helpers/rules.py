@@ -9,6 +9,7 @@ CONVENIENCE_STORE = 'convenience store'
 SUMMER_FOOOD = 'summer food site'
 FOOD_BANK = 'food bank site'
 GROW_PGH = 'grow pgh garden'
+JUST_HARVEST_SOURCE = 'Just Harvest'
 
 
 class RulesEngine(object):
@@ -85,7 +86,7 @@ class RulesEngine(object):
         Returns:
             _type_: Rules Engine
         """
-        if self.record['type'] == FRESH_ACCESS:
+        if self.record['source_org'] == JUST_HARVEST_SOURCE:
             self.record['snap'] = True
             self.record['wic'] = True
             self.record['fmnp'] = True

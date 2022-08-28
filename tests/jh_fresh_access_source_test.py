@@ -86,7 +86,7 @@ def test_map_record(monkeypatch):
         .contains_entry({'county': 'Allegheny'})\
         .contains_entry({'latitude': 40.52806})\
         .contains_entry({'longitude': -78.41051})\
-        .contains_entry({'type': 'fresh access'})\
+        .contains_entry({'type': 'supermarket'})\
         .contains_entry({'location_description': 'May 23rd-October 31st<br/>Thursdays 4pm-7pm'})\
         .contains_entry({'snap': True})\
         .contains_entry({'food_bucks': True})\
