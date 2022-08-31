@@ -4,7 +4,7 @@ This repository contains the data transformation scripts used to create the back
 
 ## Requirements
 
-The project leverage Python to do all of the transformations. You will need the following software on your device.
+The project leverages Python to do all of the transformations. You will need the following software on your device.
 
 * Python 3.10.x - [Download](https://www.python.org/downloads/)
 * Your favorite IDE or Text Editor (VSCode, PyCharm, etc)
