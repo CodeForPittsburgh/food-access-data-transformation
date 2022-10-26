@@ -133,6 +133,10 @@
             "description": "Flag to denote the location provides free food distributions",
             "type": "boolean"
         },
+        "food_rx": {
+            "description": "Flag to denote the location utilizes the FoodRx Program",
+            "type": "boolean"
+        },
         "group_id": {
             "description": "location grouping value",
             "type": "string"
