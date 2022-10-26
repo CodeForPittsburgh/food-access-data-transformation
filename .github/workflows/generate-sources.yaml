@@ -1,5 +1,9 @@
 name: DATA_PIPELINE_EXECUTION
-on: workflow_dispatch
+on: 
+  workflow_dispatch:
+  schedule:
+    - cron: '0 0 1 * *'
+  
 
 env:
   MAPBOX_KEY: ${{ secrets.MAPBOX_KEY }}
