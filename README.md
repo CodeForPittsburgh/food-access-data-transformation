@@ -33,7 +33,7 @@ python -m venv venv
 
 #Mac/Linux
 chmod +x ./venv/bin/activate
-./venv/bin/activate
+source ./venv/bin/activate
 
 # Windows
 ./venv/Scripts/activate
