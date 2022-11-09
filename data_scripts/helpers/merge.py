@@ -43,7 +43,18 @@ SOURCE_HIERARCHY = {
         'food_bucks': 1,
         'free_distribution': 1,
         'fresh_produce': 2
+    },
+    'Manual Sources Google Sheets': {
+        'coordinates': 1,
+        'snap': 1,
+        'food_bucks': 1,
+        'free_distribution': 1,
+        'fresh_produce': 1,
+        'food_rx': 1,
+        'wic': 1,
+        'fmnp': 1
     }
+        
 }
 
 
@@ -180,6 +191,7 @@ def merge_records(source: dict, target: dict, schema: dict) -> dict:
     record['free_distribution'] = bool(get_flag_value(
         source, target, 'free_distribution'))
     record['fresh_produce'] = bool(get_flag_value(source, target, 'fresh_produce'))
+    record['food_rx'] = bool(get_flag_value(source, target, 'food_rx'))
     record['merged_record'] = True
     record['group_id'] = f"{source['id']};{target['id']}"
     record['original_id'] = str(uuid4())
