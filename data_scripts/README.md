@@ -310,6 +310,48 @@ __Note:__ There are performance issues with the WIC source due to some malformed
 * The type will be calculated through the classification module.
 * Rules for food_bucks, snap, fmnp, fresh_produce, free_distribution will be set from the Rules Engine based on type.
 
+## Manual Source Script
+
+The __manual_source_script__ is used to import the information from the [Manual Sources](https://docs.google.com/spreadsheets/d/1QwWXDMzNc7X-krErCwuzTHgXfiru-U99jJeJ6nk9hko/edit#gid=693210073) Google Docs Spreadsheet. These sources are provided by PFPC and are mapped directly to the shared data model.
+
+### Manual Source Mapping
+
+| Result Field | Schema Field | Notes
+| :---------| :------------| :------
+| | file_name | Defaulted to Manual Sources Google Sheets
+| | id | Calculated row number
+| name | name |
+| type | type |
+| address | address | 
+| city | city | 
+| State| state | 
+| zip_code | zip_code |
+| county | county | 
+| location_description | location_description | 
+| phone | phone |
+| url | url |
+| date_from | date_from |
+| date_to | date_to | 
+| open_to_spec_group | open_to_spec_group |
+| food_rx | food_rx |
+| food_bucks | food_bucks | 
+| snap | snap |
+| wic | wic |
+| fmnp | fmnp |
+| fresh_produce | fresh_produce | 
+| free_distribution | free_distribution | 
+| | latitude | Retrieved from MapBox using the Address.
+| | longitude | Retrieved from MapBox using the Address.
+| | source_org | Defaulted to PFPC
+| | source_file | Defaulted to Manual Sources Google Sheets
+| | latlng_source | Defaulted to MapBox GeoCode
+
+### Manual Source Rules
+
+* All data will be mapped from the spreadsheet to the common data structure.
+* No additional rules will be applied to the records.
+* GPS Coordinates will be added based on an Address Lookup.
+
 ## Merge Data Script
 
 The __merge_data__ script is used to combine all of the Raw files into a single file for the data source. The script will validate the coordinates of each site using the __validation__ module and output any items that contain invalid coordinates. All other items are combined into a single file __merged-raw-sources.csv__.
@@ -318,6 +360,8 @@ The __merge_data__ script is used to combine all of the Raw files into a single 
 
 * All entries must have valid GeoCode Coordinates
 * Any entries with invalid GeoCode Coordinates are output to the __invalid-raw-sources.csv__ file.
+
+
 
 ## De-Duplication Script
 
