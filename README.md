@@ -2,6 +2,8 @@
 
 This repository contains the data transformation scripts used to create the backend data store for the Food Access Map. Below is information for configuring your environment to begin working with the project. Information for each script is found in the [Data Scripts ReadMe](./data_scripts/README.md)
 
+The map itself lives here: https://codeforpittsburgh.github.io/FoodAccessMap/ 
+
 ## Requirements
 
 The project leverages Python to do all of the transformations. You will need the following software on your device.
