@@ -3,7 +3,7 @@ Utilizes a JSON Schema to create a blank dictionary with default values based on
 """
 
 import calendar
-import datetime
+from datetime import date, datetime, timedelta
 
 
 def new_record(schema: dict) -> dict:
@@ -85,21 +85,21 @@ def get_month_end(name: str | int, year: int) -> str | None:
     """
     if str(name).isnumeric():
         if int(name) >= 1 and int(name) <= 12:
-            next_month = datetime.date(year, name + 1, 1)
-            end_month = next_month + datetime.timedelta(days=-1)
+            next_month = date(year, name + 1, 1)
+            end_month = next_month + timedelta(days=-1)
             return end_month.strftime('%B %-d')
     else:
         if is_month_name(name) or is_month_abbr(name):
             if is_month_name(name):
-                current_month = datetime.datetime.strptime(
+                current_month = datetime.strptime(
                     f"{name.capitalize()}/1/{year}", '%B/%d/%Y')
-                next_month = datetime.date(year, current_month.month+1, 1)
+                next_month = date(year, current_month.month+1, 1)
             else:
-                current_month = datetime.datetime.strptime(
+                current_month = datetime.strptime(
                     f"{name.capitalize()}/1/{year}", '%b/%-d/%Y')
-                next_month = datetime.date(year, current_month.month+1, 1)
+                next_month = date(year, current_month.month+1, 1)
 
-            end_month = next_month + datetime.timedelta(days=-1)
+            end_month = next_month + timedelta(days=-1)
             return end_month.strftime('%B %-d')
     return None
 
@@ -170,10 +170,11 @@ def set_date_range(record: dict, schedules: list) -> dict:
             record['date_from'] = get_month_start(months[0])
             if len(months) > 1:
                 record['date_to'] = get_month_end(
-                    months[1], datetime.date.today().year)
+                    months[1], date.today().year)
     return record
 
-def apply_schema(records:list, schema:dict) -> list:
+
+def apply_schema(records: list, schema: dict) -> list:
     """
     Applies the Schema to the Collection of Dictionaries once read in.
 
@@ -184,12 +185,12 @@ def apply_schema(records:list, schema:dict) -> list:
     Returns:
         list: List of typed records
     """
-    
+
     for record in records:
         apply_schema_to_record(record, schema)
-    
-    
-def apply_schema_to_record(record:dict, schema:dict) -> None:
+
+
+def apply_schema_to_record(record: dict, schema: dict) -> None:
     """
     Applies the Schema to a given record.
 
@@ -197,9 +198,9 @@ def apply_schema_to_record(record:dict, schema:dict) -> None:
         record (dict): Dictionary
         schema (dict): Schema to apply to the Dictionary
     """
-    
+
     properties = schema.get('properties', {})
-    
+
     for key in properties.keys():
         if key in record:
             field_info = properties[key]
@@ -208,9 +209,9 @@ def apply_schema_to_record(record:dict, schema:dict) -> None:
                 record[key] = convert_value(record[key], type_info[0])
             else:
                 record[key] = convert_value(record[key], type_info)
-    
-        
-def convert_value(value:any, type:str) -> str | float | bool | int:
+
+
+def convert_value(value: any, type: str) -> str | float | bool | int:
     """
     Converts a given value to the desired type
 
@@ -221,7 +222,7 @@ def convert_value(value:any, type:str) -> str | float | bool | int:
     Returns:
         str | float | bool: return value
     """
-    
+
     match type:
         case 'string':
             return str(value)
