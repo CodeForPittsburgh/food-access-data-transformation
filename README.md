@@ -8,7 +8,7 @@ The map itself lives here: https://codeforpittsburgh.github.io/FoodAccessMap/
 
 The project leverages Python to do all of the transformations. You will need the following software on your device.
 
-* Python 3.10.x - [Download](https://www.python.org/downloads/)
+* Python 3.11.x - [Download](https://www.python.org/downloads/)
 * Your favorite IDE or Text Editor (VSCode, PyCharm, etc)
 
 ### VSCode Dev Container
@@ -16,7 +16,7 @@ The project leverages Python to do all of the transformations. You will need the
 If you are using VSCode, there are also settings to utilize a Dev Container for development instead of installing software to your machine. this will require Docker to be installed prior to opening the project inside the container.  Once launched the container will contain the following:
 
 * VSCode Extensions for Python Development
-* Python 3.10
+* Python 3.11
 * Python Project Packages from __merge-requirements.txt__
 * Python Project Packages from __dev-requirements.txt__
 
