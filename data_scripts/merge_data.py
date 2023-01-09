@@ -96,7 +96,7 @@ def main():
             reader = csv.DictReader(input_file, dialect='input')
             for record in reader:
                 validate_coordinates(record)
-                if record.get('longitude', 0) != 0 and record.get('latitude', 0) != 0 and record.get('active_record', False):
+                if record.get('longitude', 0) != 0 and record.get('latitude', 0) != 0 and record.get('active_record', 'False') == 'True':
                     records.append(record)
                 else:
                     invalid_records.append(record)
