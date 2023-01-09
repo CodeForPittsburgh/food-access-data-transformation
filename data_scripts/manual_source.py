@@ -7,8 +7,8 @@ import json
 import logging
 import os
 
-
-from helpers import gis, maputil, validation, mapbox
+from helpers import gis, mapbox, maputil, validation
+from helpers.rules import RulesEngine
 
 RAW_OUTPUT_FOLDER = 'food-data/raw-sources'
 RAW_OUTPUT_FILE = 'manual-sources-raw.csv'
@@ -56,10 +56,10 @@ def write_output(records: list):
     Args:
         records (list): List of Dictionaries to output.
     """
-    
+
     if not os.path.exists(RAW_OUTPUT_FOLDER):
         os.makedirs(RAW_OUTPUT_FOLDER)
-    
+
     csv.register_dialect('output', delimiter=DELIMITER)
     with open(os.path.join(RAW_OUTPUT_FOLDER, RAW_OUTPUT_FILE), 'w', encoding='utf-8', newline='') as output_file:
         writer = csv.DictWriter(
@@ -79,7 +79,7 @@ def map_record(record: dict, schema: dict) -> dict:
         dict: Mapped Record
     """
     mapped_record = maputil.new_record(schema)
-    
+
     mapped_record['file_name'] = SOURCE
     mapped_record['name'] = record.get('name', '')
     mapped_record['type'] = record.get('type', 'unknown')
@@ -88,23 +88,30 @@ def map_record(record: dict, schema: dict) -> dict:
     mapped_record['state'] = record.get('state', '')
     mapped_record['zip_code'] = record.get('zip_code', '')
     mapped_record['county'] = record.get('county', '')
-    mapped_record['location_description'] = str(record.get('location_description', '')).replace('\n', '<br/>').replace('\r', '<br/>')
+    mapped_record['location_description'] = str(record.get(
+        'location_description', '')).replace('\n', '<br/>').replace('\r', '<br/>')
     mapped_record['phone'] = record.get('phone', '')
     mapped_record['url'] = record.get('url', '')
     mapped_record['date_from'] = record.get('date_from', '')
     mapped_record['date_to'] = record.get('date_to', '')
     mapped_record['open_to_spec_group'] = record.get('open_to_spec_group', '')
-    mapped_record['food_rx'] = maputil.convert_value(record.get('food_rx', 'no'), 'boolean')
-    mapped_record['wic'] = maputil.convert_value(record.get('wic', 'no'), 'boolean')
-    mapped_record['snap'] = maputil.convert_value(record.get('snap', 'no'), 'boolean')
-    mapped_record['food_bucks'] = maputil.convert_value(record.get('food_bucks', 'no'), 'boolean')
-    mapped_record['fmnp'] = maputil.convert_value(record.get('fmnp', 'no'), 'boolean')
-    mapped_record['fresh_produce'] = maputil.convert_value(record.get('fresh_produce', 'no'), 'boolean')
-    mapped_record['free_distribution'] = maputil.convert_value(record.get('free_distribution', 'no'), 'boolean')
+    mapped_record['food_rx'] = maputil.convert_value(
+        record.get('food_rx', 'no'), 'boolean')
+    mapped_record['wic'] = maputil.convert_value(
+        record.get('wic', 'no'), 'boolean')
+    mapped_record['snap'] = maputil.convert_value(
+        record.get('snap', 'no'), 'boolean')
+    mapped_record['food_bucks'] = maputil.convert_value(
+        record.get('food_bucks', 'no'), 'boolean')
+    mapped_record['fmnp'] = maputil.convert_value(
+        record.get('fmnp', 'no'), 'boolean')
+    mapped_record['fresh_produce'] = maputil.convert_value(
+        record.get('fresh_produce', 'no'), 'boolean')
+    mapped_record['free_distribution'] = maputil.convert_value(
+        record.get('free_distribution', 'no'), 'boolean')
     mapped_record['source_org'] = 'PFPC'
     mapped_record['source_file'] = SOURCE
-    
-    
+
     # Get the Coordinates
     coordinates = get_coordinates(mapped_record)
     if coordinates:
@@ -112,7 +119,13 @@ def map_record(record: dict, schema: dict) -> dict:
         mapped_record['latitude'] = coordinates.get('latitude', 0)
         mapped_record['latlng_source'] = 'MapBox GeoCode'
 
-    return mapped_record
+    return RulesEngine(mapped_record)\
+        .apply_global_rules()\
+        .apply_farmer_market_rules()\
+        .apply_food_bank_rules()\
+        .apply_summer_meal_rules()\
+        .commit()
+
 
 def main():
     """
