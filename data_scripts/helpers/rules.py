@@ -2,6 +2,8 @@
 Rules Engine with Fluent Interface to applie business rules and transformations to a given record.   
 """
 
+from datetime import datetime
+
 FARMERS_MARKET = "farmer's market"
 SUPERMARKET = 'supermarket'
 FRESH_ACCESS = 'fresh access'
@@ -18,6 +20,15 @@ class RulesEngine(object):
 
     def __init__(self, record: dict) -> None:
         self.record = record
+
+    def get_current_date(self) -> datetime:
+        """
+        Returns the current UTC DateTime
+
+        Returns:
+            datetime: current utc datetime
+        """
+        return datetime.utcnow()
 
     def apply_global_rules(self):
         """
@@ -59,6 +70,7 @@ class RulesEngine(object):
             self.record['fmnp'] = False
             self.record['food_bucks'] = False
 
+        self.record['active_record'] = True
         return self
 
     def apply_farmer_market_rules(self):
@@ -68,6 +80,12 @@ class RulesEngine(object):
         Returns:
             _type_: RulesEngine
         """
+        current_date = self.get_current_date()
+        start_date = datetime(current_date.year, 6, 1)
+        end_date = datetime(current_date.year, 8, 31)
+
+        bloomfield_start = datetime(current_date.year, 5, 1)
+        bloomfield_end = datetime(current_date.year, 11, 30)
 
         if self.record.get('type', 'other') == FARMERS_MARKET:
             self.record['snap'] = True
@@ -76,6 +94,11 @@ class RulesEngine(object):
             self.record['food_bucks'] = True
             self.record['fmnp'] = True
             self.record['free_distribution'] = False
+
+            if 'bloomfield' in self.record.get('name', '').lower():
+                self.record['active_record'] = current_date >= bloomfield_start and current_date <= bloomfield_end
+            else:
+                self.record['active_record'] = current_date >= start_date and current_date <= end_date
 
         return self
 
@@ -150,6 +173,10 @@ class RulesEngine(object):
             _type_: Rules Engine
         """
 
+        current_date = self.get_current_date()
+        start_date = datetime(current_date.year, 6, 1)
+        end_date = datetime(current_date.year, 8, 30)
+
         if self.record['type'] == SUMMER_FOOOD:
             self.record['snap'] = False
             self.record['wic'] = False
@@ -157,6 +184,8 @@ class RulesEngine(object):
             self.record['food_bucks'] = False
             self.record['free_distribution'] = True
             self.record['open_to_spec_group'] = 'children and teens 18 and younger'
+            self.record['active_record'] = current_date >= start_date and current_date <= end_date
+
         return self
 
     def apply_grow_pgh_rules(self):

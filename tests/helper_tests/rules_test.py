@@ -2,17 +2,19 @@
 Tests for Rules Engine.
 """
 
-from itertools import combinations_with_replacement
-from random import getrandbits
+import json
+from datetime import datetime, timedelta
+
+from assertpy import assert_that
 
 from data_scripts.helpers import maputil
-from data_scripts.helpers.rules import FOOD_BANK, RulesEngine
-from assertpy import assert_that
-import json
-
+from data_scripts.helpers.rules import RulesEngine
 
 FARMER_MARKET = "farmer's market"
 JUST_HARVEST_SOURCE = 'Just Harvest'
+FOOD_BANK = 'food bank site'
+SUMMER_MEAL_SITE = 'summer food site'
+
 
 def load_schema() -> dict:
     """
@@ -47,7 +49,8 @@ def test_apply_global_rules_just_harvest_corner_source():
     result = RulesEngine(record).apply_global_rules().commit()
 
     assert_that(result, 'Fresh Produce and Food Bucks should be True')\
-        .contains_entry({'fresh_produce': True})
+        .contains_entry({'fresh_produce': True})\
+        .contains_entry({'active_record': True})
 
 
 def test_apply_global_rules_fmnp():
@@ -60,7 +63,8 @@ def test_apply_global_rules_fmnp():
     result = RulesEngine(record).apply_global_rules().commit()
     assert_that(result, 'FMNP and Fresh Produce should be True')\
         .contains_entry({'fmnp': True})\
-        .contains_entry({'fresh_produce': True})
+        .contains_entry({'fresh_produce': True})\
+        .contains_entry({'active_record': True})
 
 
 def test_apply_global_rules_supermarket():
@@ -72,8 +76,9 @@ def test_apply_global_rules_supermarket():
     record['type'] = 'supermarket'
 
     result = RulesEngine(record).apply_global_rules().commit()
-    assert_that(result, 'Fresh Produce should be true').contains_entry(
-        {'fresh_produce': True})
+    assert_that(result, 'Fresh Produce should be true')\
+        .contains_entry({'fresh_produce': True})\
+        .contains_entry({'active_record': True})
 
 
 def test_apply_global_rules_just_harvest_fresh_source():
@@ -88,7 +93,8 @@ def test_apply_global_rules_just_harvest_fresh_source():
     result = RulesEngine(record).apply_global_rules().commit()
     assert_that(result, 'Food Bucks and Fresh Produce should be True')\
         .contains_entry({'fresh_produce': True})\
-        .contains_entry({'food_bucks': True})
+        .contains_entry({'food_bucks': True})\
+        .contains_entry({'active_record': True})
 
 
 def test_apply_global_rules_usda_source():
@@ -102,7 +108,9 @@ def test_apply_global_rules_usda_source():
 
     result = RulesEngine(record).apply_global_rules().commit()
 
-    assert_that(result, 'SNAP should be True').contains_entry({'snap': True})
+    assert_that(result, 'SNAP should be True')\
+        .contains_entry({'snap': True})\
+        .contains_entry({'active_record': True})
 
 
 def test_apply_global_rules_food_bucks():
@@ -115,8 +123,9 @@ def test_apply_global_rules_food_bucks():
 
     result = RulesEngine(record).apply_global_rules().commit()
 
-    assert_that(result, 'SNAP should be True when Foodbucks is True').contains_entry(
-        {'snap': True})
+    assert_that(result, 'SNAP should be True when Foodbucks is True')\
+        .contains_entry({'snap': True})\
+        .contains_entry({'active_record': True})
 
 
 def test_apply_global_rules_wic_source():
@@ -128,8 +137,9 @@ def test_apply_global_rules_wic_source():
     record['source_file'] = 'Allegheny_County_WIC_Vendor_Locations.xlsx'
 
     result = RulesEngine(record).apply_global_rules().commit()
-    assert_that(result, 'WIC should be True for WIC source').contains_entry(
-        {'wic': True})
+    assert_that(result, 'WIC should be True for WIC source')\
+        .contains_entry({'wic': True})\
+        .contains_entry({'active_record': True})
 
 
 def test_apply_global_rules_gpcfb_green_grocer_source():
@@ -142,8 +152,9 @@ def test_apply_global_rules_gpcfb_green_grocer_source():
 
     result = RulesEngine(record).apply_global_rules().commit()
 
-    assert_that(result, 'FMNP should be True for GPCFB GG sources').contains_entry(
-        {'fmnp': True})
+    assert_that(result, 'FMNP should be True for GPCFB GG sources')\
+        .contains_entry({'fmnp': True})\
+        .contains_entry({'active_record': True})
 
 
 def test_apply_global_rules_gpcfb_source():
@@ -155,8 +166,9 @@ def test_apply_global_rules_gpcfb_source():
     record['source_file'] = 'Greater Pittsburgh Community Food Bank'
 
     result = RulesEngine(record).apply_global_rules().commit()
-    assert_that(result, 'GPCFB should have Free Distribution').contains_entry(
-        {'free_distribution': True})
+    assert_that(result, 'GPCFB should have Free Distribution')\
+        .contains_entry({'free_distribution': True})\
+        .contains_entry({'active_record': True})
 
 
 def test_apply_global_rules_free_distribution():
@@ -175,7 +187,8 @@ def test_apply_global_rules_free_distribution():
     assert_that(result, 'Snap, Wic, and Food bucks should be False')\
         .contains_entry({'snap': False})\
         .contains_entry({'wic': False})\
-        .contains_entry({'food_bucks': False})
+        .contains_entry({'food_bucks': False})\
+        .contains_entry({'active_record': True})
 
 
 def test_apply_global_rules_summer_food():
@@ -184,12 +197,13 @@ def test_apply_global_rules_summer_food():
     """
 
     record = get_record()
-    record['type'] = 'summer food site'
+    record['type'] = SUMMER_MEAL_SITE
 
     result = RulesEngine(record).apply_global_rules().commit()
 
     assert_that(result, 'Open to should be under 18')\
-        .contains_entry({'open_to_spec_group': 'children and teens 18 and younger'})
+        .contains_entry({'open_to_spec_group': 'children and teens 18 and younger'})\
+        .contains_entry({'active_record': True})
 
 
 def test_apply_farmer_market_rules():
@@ -210,6 +224,7 @@ def test_apply_farmer_market_rules():
         .contains_entry({'food_bucks': True})\
         .contains_entry({'free_distribution': False})
 
+
 def test_apply_famer_market_rules_green_grocer():
     """
     Tests apply the Farmers Market Rules to a green grocer.
@@ -227,7 +242,6 @@ def test_apply_famer_market_rules_green_grocer():
         .contains_entry({'food_bucks': True})\
         .contains_entry({'free_distribution': False})
 
-    
 
 def test_apply_farmer_market_rules_skip():
     """
@@ -237,9 +251,9 @@ def test_apply_farmer_market_rules_skip():
     record['name'] = 'Walmart'
     record['free_distribution'] = True
     record['type'] = 'other'
-    
+
     result = RulesEngine(record).apply_farmer_market_rules().commit()
-    
+
     assert_that(result, 'Farmers Market rules should not be applied')\
         .contains_entry({'type': 'other'})\
         .contains_entry({'snap': False})\
@@ -247,8 +261,7 @@ def test_apply_farmer_market_rules_skip():
         .contains_entry({'fmnp': False})\
         .contains_entry({'food_bucks': False})\
         .contains_entry({'free_distribution': True})
-    
-        
+
 
 def test_apply_fresh_access_rules():
     """
@@ -259,9 +272,9 @@ def test_apply_fresh_access_rules():
     record['name'] = 'Cool Market'
     record['type'] = 'supermarket'
     record['source_org'] = JUST_HARVEST_SOURCE
-    
+
     result = RulesEngine(record).apply_fresh_access_rules().commit()
-    
+
     assert_that(result, 'SNAP = True, WIC = True, FMNP = True, Fresh Prod = True, Food Bucks = True, Free Dist = False')\
         .contains_entry({'snap': True})\
         .contains_entry({'wic': True})\
@@ -269,7 +282,8 @@ def test_apply_fresh_access_rules():
         .contains_entry({'fresh_produce': True})\
         .contains_entry({'food_bucks': True})\
         .contains_entry({'free_distribution': False})
-    
+
+
 def test_apply_fresh_access_rules_skip():
     """
     Tests the rules are not applied to a record that does not meet the fresh access criteria.
@@ -280,17 +294,16 @@ def test_apply_fresh_access_rules_skip():
     record['type'] = 'supermarket'
     record['free_distribution'] = True
     record['source_org'] = 'ARC_GIS'
-    
+
     result = RulesEngine(record).apply_fresh_access_rules().commit()
-    
+
     assert_that(result, 'Fresh Access Rules should not be applied')\
-        .contains_entry({'snap':False})\
+        .contains_entry({'snap': False})\
         .contains_entry({'wic': False})\
         .contains_entry({'fmnp': False})\
         .contains_entry({'fresh_produce': False})\
         .contains_entry({'food_bucks': False})\
         .contains_entry({'free_distribution': True})
-    
 
 
 def test_apply_fresh_corners_rules():
@@ -301,9 +314,9 @@ def test_apply_fresh_corners_rules():
     record = get_record()
     record['snap'] = True
     record['type'] = 'convenience store'
-    
+
     result = RulesEngine(record).apply_fresh_corners_rules().commit()
-    
+
     assert_that(result, 'Food Bucks = True, FMNP = False, Free Dist = False')\
         .contains_entry({'food_bucks': True})\
         .contains_entry({'fmnp': False})\
@@ -321,15 +334,14 @@ def test_apply_fresh_corners_rules_skip():
     record['type'] = 'market'
     record['fmnp'] = True
     record['free_distribution'] = True
-    
+
     result = RulesEngine(record).apply_fresh_corners_rules().commit()
-    
+
     assert_that(result, 'Fresh Corners Rules should not be applied')\
         .contains_entry({'food_bucks': False})\
         .contains_entry({'snap': False})\
         .contains_entry({'free_distribution': True})\
-        .contains_entry({'fmnp': True})  
-        
+        .contains_entry({'fmnp': True})
 
 
 def test_apply_food_bank_rules():
@@ -344,16 +356,16 @@ def test_apply_food_bank_rules():
     record['food_bucks'] = True
     record['fmnp'] = True
     record['free_distribution'] = False
-    
+
     result = RulesEngine(record).apply_food_bank_rules().commit()
-    
+
     assert_that(result, 'Free Distribution should be True')\
         .contains_entry({'snap': False})\
         .contains_entry({'wic': False})\
         .contains_entry({'food_bucks': False})\
         .contains_entry({'fmnp': False})\
         .contains_entry({'free_distribution': True})
-        
+
 
 def test_apply_food_bank_rules_skip():
     """
@@ -367,31 +379,33 @@ def test_apply_food_bank_rules_skip():
     record['food_bucks'] = True
     record['fmnp'] = True
     record['free_distribution'] = False
-    
+
     result = RulesEngine(record).apply_food_bank_rules().commit()
-    
+
     assert_that(result, 'Food bank rules should not be applied')\
         .contains_entry({'snap': True})\
         .contains_entry({'wic': True})\
         .contains_entry({'food_bucks': True})\
         .contains_entry({'fmnp': True})\
         .contains_entry({'free_distribution': False})
-        
+
+
 def test_gpcfb_fresh_produce():
     """
     Tests the Fresh produce flag is set when grocer, fresh or produce are in the location_description.
     """
-    
+
     record = get_record()
     record['name'] = 'Food Bank Thingy'
     record['type'] = FOOD_BANK
     record['location_description'] = 'Gives Groceries'
-    
+
     result = RulesEngine(record).apply_food_bank_rules().commit()
-    
+
     assert_that(result)\
         .contains_entry({'fresh_produce': True})
-        
+
+
 def test_gpcfb_fresh_produce_name():
     """
     Tests if the fresh produce flag is set for items with Green Grocer in the name.
@@ -401,26 +415,25 @@ def test_gpcfb_fresh_produce_name():
     record['type'] = FOOD_BANK
     record['location_description'] = 'testing'
     result = RulesEngine(record).apply_food_bank_rules().commit()
-    
+
     assert_that(result)\
         .contains_entry({'fresh_produce': True})
-    
-    
+
+
 def test_gpcfb_fresh_produce_false():
     """
     Tests the Fresh Produce is not set for GPCFB Rules
     """
-    
+
     record = get_record()
     record['name'] = 'Food Bank thing'
     record['type'] = FOOD_BANK
     record['location_description'] = 'Cereal only'
-    
+
     result = RulesEngine(record).apply_food_bank_rules().commit()
-    
+
     assert_that(result)\
         .contains_entry({'fresh_produce': False})
-    
 
 
 def test_apply_summer_meal_rules():
@@ -429,16 +442,16 @@ def test_apply_summer_meal_rules():
     """
 
     record = get_record()
-    record['type'] = 'summer food site'
+    record['type'] = SUMMER_MEAL_SITE
     record['snap'] = True
     record['wic'] = True
     record['fmnp'] = True
     record['food_bucks'] = True
     record['free_distribution'] = False
-    record['open_to_spec_group'] = 'fart'
-    
+    record['open_to_spec_group'] = 'chicken'
+
     result = RulesEngine(record).apply_summer_meal_rules().commit()
-    
+
     assert_that(result, 'Summer Meal Sites Rules are applied')\
         .contains_entry({'snap': False})\
         .contains_entry({'wic': False})\
@@ -446,7 +459,6 @@ def test_apply_summer_meal_rules():
         .contains_entry({'food_bucks': False})\
         .contains_entry({'free_distribution': True})\
         .contains_entry({'open_to_spec_group': "children and teens 18 and younger"})
-        
 
 
 def test_apply_summer_meal_rules_skip():
@@ -461,18 +473,17 @@ def test_apply_summer_meal_rules_skip():
     record['fmnp'] = True
     record['food_bucks'] = True
     record['free_distribution'] = False
-    record['open_to_spec_group'] = 'fart'
-    
+    record['open_to_spec_group'] = 'chicken'
+
     result = RulesEngine(record).apply_summer_meal_rules().commit()
-    
+
     assert_that(result, 'Summer Meal Sites Rules should not be applied')\
         .contains_entry({'snap': True})\
         .contains_entry({'wic': True})\
         .contains_entry({'fmnp': True})\
         .contains_entry({'food_bucks': True})\
         .contains_entry({'free_distribution': False})\
-        .contains_entry({'open_to_spec_group': "fart"})
-        
+        .contains_entry({'open_to_spec_group': "chicken"})
 
 
 def test_apply_grow_pgh_rules():
@@ -488,9 +499,9 @@ def test_apply_grow_pgh_rules():
     record['fresh_produce'] = False
     record['free_distribution'] = True
     record['food_bucks'] = True
-    
+
     result = RulesEngine(record).apply_grow_pgh_rules().commit()
-    
+
     assert_that(result, 'Grow PGH Rulses should be applied')\
         .contains_entry({'snap': False})\
         .contains_entry({'wic': False})\
@@ -498,7 +509,6 @@ def test_apply_grow_pgh_rules():
         .contains_entry({'fresh_produce': True})\
         .contains_entry({'free_distribution': False})\
         .contains_entry({'food_bucks': False})
-        
 
 
 def test_apply_grow_pgh_rules_skip():
@@ -514,9 +524,9 @@ def test_apply_grow_pgh_rules_skip():
     record['food_bucks'] = False
     record['fresh_produce'] = False
     record['free_distribution'] = True
-    
+
     result = RulesEngine(record).apply_grow_pgh_rules().commit()
-    
+
     assert_that(result, 'Grow PGH Rulses should not be applied')\
         .contains_entry({'snap': False})\
         .contains_entry({'wic': True})\
@@ -525,15 +535,156 @@ def test_apply_grow_pgh_rules_skip():
         .contains_entry({'fresh_produce': False})\
         .contains_entry({'free_distribution': True})
 
+
 def test_apply_brideway_rules():
     """
     Tests applying the Bridgeway capital rules for Fresh Produce.
     """
-    
+
     record = get_record()
     record['location_description'] = 'Fresh produce available'
-    
+
     result = RulesEngine(record).apply_bridgeway_rules().commit()
-    
-    assert_that(result).contains_entry({'fresh_produce': True})    
-    
+
+    assert_that(result).contains_entry({'fresh_produce': True})
+
+
+def test_get_current_datetime():
+    """
+    Tests the current datetime is returned
+    """
+
+    record = get_record()
+    result = RulesEngine(record).get_current_date()
+
+    assert_that(result).is_close_to(datetime.utcnow(), timedelta(minutes=5))
+
+
+def test_famers_market_in_range_active(monkeypatch):
+    """
+    Tests that the farmer's market active flag is set for items in the available range.
+    June 1 to August 31
+    """
+
+    def mock_get_current_date():
+        return datetime(2023, 7, 1)
+
+    record = get_record()
+    record['type'] = FARMER_MARKET
+    record['name'] = "Happy Farmer's Market"
+
+    engine = RulesEngine(record)
+    monkeypatch.setattr(engine, 'get_current_date', mock_get_current_date)
+
+    result = engine.apply_global_rules().apply_farmer_market_rules().commit()
+
+    assert_that(result)\
+        .contains_entry({'active_record': True})\
+        .contains_entry({'type': FARMER_MARKET})
+
+
+def test_bloomfield_famers_market_range_active(monkeypatch):
+    """
+    Tests the bloomfield farmer's market available range.
+    May 1 to November 31
+    """
+
+    def mock_get_current_date():
+        return datetime(2023, 7, 1)
+
+    record = get_record()
+    record['type'] = FARMER_MARKET
+    record['name'] = "Bloomfield Farmer's Market"
+
+    engine = RulesEngine(record)
+    monkeypatch.setattr(engine, 'get_current_date', mock_get_current_date)
+
+    result = engine.apply_global_rules().apply_farmer_market_rules().commit()
+
+    assert_that(result)\
+        .contains_entry({'active_record': True})\
+        .contains_entry({'type': FARMER_MARKET})
+
+
+def test_farmers_market_inactive_range(monkeypatch):
+    """
+    Tests that the Farmers Market is set to inactive when the date is outside the range.
+    """
+
+    def mock_get_current_date():
+        return datetime(2023, 1, 15)
+
+    record = get_record()
+    record['type'] = FARMER_MARKET
+    record['name'] = "Happy Farmer's Market"
+    engine = RulesEngine(record)
+
+    monkeypatch.setattr(engine, 'get_current_date', mock_get_current_date)
+
+    result = engine.apply_global_rules().apply_farmer_market_rules().commit()
+
+    assert_that(result)\
+        .contains_entry({'active_record': False})\
+        .contains_entry({'type': FARMER_MARKET})
+
+
+def test_bloomfield_farmers_market_inactive_range(monkeypatch):
+    """
+    Tests the Bloomfield farmers market is inactive when the date is outside the range.
+    """
+
+    def mock_get_current_date():
+        return datetime(2023, 1, 15)
+
+    record = get_record()
+    record['type'] = FARMER_MARKET
+    record['name'] = "Bloomfield Farmer's Market"
+    engine = RulesEngine(record)
+
+    monkeypatch.setattr(engine, 'get_current_date', mock_get_current_date)
+
+    result = engine.apply_global_rules().apply_farmer_market_rules().commit()
+
+    assert_that(result)\
+        .contains_entry({'active_record': False})\
+        .contains_entry({'type': FARMER_MARKET})
+
+
+def test_summer_meal_site_active_range(monkeypatch):
+    """
+    Tests the Summer Meal Sites are active inside the the range of June 1 to August 30.
+    """
+
+    def mock_get_current_date():
+        return datetime(2023, 8, 1)
+
+    record = get_record()
+    record['type'] = SUMMER_MEAL_SITE
+
+    engine = RulesEngine(record)
+
+    monkeypatch.setattr(engine, 'get_current_date', mock_get_current_date)
+
+    result = engine.apply_global_rules().apply_summer_meal_rules().commit()
+
+    assert_that(result).contains_entry({'active_record': True})
+
+
+def test_summer_mean_site_inactive_range(monkeypatch):
+    """
+    Tests the Summer Meal Sites are inactive outside the range of June 1 to August 30.
+    """
+
+    def mock_get_current_date():
+        return datetime(2023, 3, 1)
+
+    record = get_record()
+    record['type'] = SUMMER_MEAL_SITE
+
+    engine = RulesEngine(record)
+
+    monkeypatch.setattr(engine, 'get_current_date', mock_get_current_date)
+
+    result = engine.apply_global_rules().apply_summer_meal_rules().commit()
+
+    assert_that(result).contains_entry({'active_record': False})

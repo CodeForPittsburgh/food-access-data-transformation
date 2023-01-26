@@ -152,6 +152,10 @@
         "in_error": {
             "description": "Denotes the record is in error and may not be accurate.",
             "type": "boolean"
+        },
+        "active_record": {
+            "description": "Denotes the record is an active item and should be processed into the final set.",
+            "type": "boolean"
         }
     },
     "required": [
