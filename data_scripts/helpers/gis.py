@@ -33,7 +33,7 @@ def get_wic_sites() -> list:
     }
 
     response = requests.post(WIC_SERVICE + resource,
-                             json=payload, headers=headers)
+                             json=payload, headers=headers, timeout=60)
 
     if response.status_code == 200:
         output_json = response.json()
@@ -60,7 +60,7 @@ def get_snap_sites() -> list:
         'f': 'json'
     }
     results = []
-    response = requests.get(GIS_1_SERVICE + resource, params=params)
+    response = requests.get(GIS_1_SERVICE + resource, params=params, timeout=60)
     if response.status_code == 200:
         output = response.json()
         if 'features' in output and output['features']:
@@ -97,7 +97,7 @@ def get_fmnp_markets() -> list:
 
     results = []
     resource = '/n3KaqXoFYDuIhfyz/ArcGIS/rest/services/FMNPMarkets/FeatureServer/0/query'
-    response = requests.get(GIS_5_SERVICE + resource, params=params)
+    response = requests.get(GIS_5_SERVICE + resource, params=params, timeout=60)
 
     if response.status_code == 200:
         output = response.json()
@@ -134,7 +134,7 @@ def get_gpcfb_sites() -> list:
 
     resource = '/vdNDkVykv9vEWFX4/arcgis/rest/services/COVID19_Food_Access_(PUBLIC)/FeatureServer/0/query'
 
-    response = requests.get(GIS_1_SERVICE + resource, params=params)
+    response = requests.get(GIS_1_SERVICE + resource, params=params, timeout=60)
 
     if response.status_code == 200:
         output = response.json()
@@ -167,7 +167,7 @@ def get_schedule_entry(market_id: str) -> list:
     }
 
     resource = '/n3KaqXoFYDuIhfyz/ArcGIS/rest/services/FMNPMarkets/FeatureServer/1/query'
-    response = requests.get(GIS_5_SERVICE + resource, params=params)
+    response = requests.get(GIS_5_SERVICE + resource, params=params, timeout=60)
 
     schedules = []
     if response.status_code == 200:
@@ -217,7 +217,7 @@ def get_summer_meal_sites() -> list:
         'f': 'geojson'
     }
     resource = '/vdNDkVykv9vEWFX4/arcgis/rest/services/Child_Nutrition/FeatureServer/0/query'
-    response = requests.get(GIS_1_SERVICE + resource, params=params)
+    response = requests.get(GIS_1_SERVICE + resource, params=params, timeout=60)
 
     if response.status_code == 200:
         output = response.json()
@@ -250,7 +250,7 @@ def get_google_sheet_csv(sheet_id: str, gid: str) -> list:
         'gid': gid
     }
 
-    response = requests.get(GOOGLE_SHEETS, params=params)
+    response = requests.get(GOOGLE_SHEETS, params=params, timeout=60)
 
     if response.status_code == 200:
         output = response.content.decode()
